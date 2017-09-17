@@ -13,10 +13,6 @@ from app import views
 from app.models import Application
 
 def authenticate(username, password):
-    print(username)
-    print(password)
-    print(Application.query.filter(Application.id == username and
-        Application.secret == password).first().name)
     return Application.query.filter(Application.id == username and
         Application.secret == password).first()
 
