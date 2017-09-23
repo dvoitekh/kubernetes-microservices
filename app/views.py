@@ -21,7 +21,6 @@ from app.serializers import ApplicationSerializer, LogSerializer
 
 # Applications requests
 @app.route('/applications', methods=['GET', 'POST'])
-@jwt_required()
 def applications():
     if request.method == 'GET':
         applications = Application.query.all()
