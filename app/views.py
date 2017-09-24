@@ -27,7 +27,8 @@ def applications():
         return ApplicationSerializer(applications).serialize()
     else:
         params = request.get_json()
-        application = Application(name=params['name'], id=params['id'], secret=params['secret'], created_at=datetime.datetime.now())
+        application = Application(name=params['name'], id=params['id'],
+            secret=params['secret'], created_at=datetime.datetime.now())
         application.save()
         return ApplicationSerializer(application).serialize()
 
@@ -54,6 +55,7 @@ def logs():
         return LogSerializer(logs).serialize()
     else:
         params = request.get_json()
-        log = Log(application_id=current_identity.id, request=params['request'], ip_address=params['ip_address'], created_at=datetime.datetime.now())
+        log = Log(application_id=current_identity.id, request=params['request'],
+            ip_address=params['ip_address'], created_at=datetime.datetime.now())
         log.save()
         return LogSerializer(log).serialize()
