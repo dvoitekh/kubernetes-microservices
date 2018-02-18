@@ -10,14 +10,17 @@ app.config.from_object('config')
 db = MongoAlchemy(app)
 
 from app import views
-from app.models import Application
+from app.models import User
+
 
 def authenticate(username, password):
-    return Application.query.filter(Application.id == username and
-        Application.secret == password).first()
+    return User.query.filter(User.username == username and
+                             User.password == password).first()
+
 
 def identity(payload):
     id = payload['identity']
-    return Application.query.filter(Application.id == id).first()
+    return User.query.filter(User.id == id).first()
+
 
 jwt = JWT(app, authenticate, identity)

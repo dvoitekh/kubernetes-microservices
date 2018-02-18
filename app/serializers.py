@@ -25,8 +25,14 @@ class BaseSerializer(object):
             result = self._mongo_object_to_dic(self._records)
         return jsonify(result)
 
+
 class ApplicationSerializer(BaseSerializer):
-    FIELDS = ['id', 'name', 'created_at']
+    FIELDS = ['id', 'name', 'user_id', 'created_at']
+
 
 class LogSerializer(BaseSerializer):
     FIELDS = ['application_id', 'request', 'ip_address', 'created_at']
+
+
+class UserSerializer(BaseSerializer):
+    FIELDS = ['id', 'username', 'password', 'created_at']
