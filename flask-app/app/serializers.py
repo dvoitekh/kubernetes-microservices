@@ -1,5 +1,5 @@
 from flask import jsonify
-from app.models import Application, Log
+from app.models import Application, Log, User
 
 class BaseSerializer(object):
     FIELDS = []
@@ -27,12 +27,12 @@ class BaseSerializer(object):
 
 
 class ApplicationSerializer(BaseSerializer):
-    FIELDS = ['id', 'name', 'user_id', 'created_at']
+    FIELDS = ['_id', 'name', 'user_id', 'created_at']
 
 
 class LogSerializer(BaseSerializer):
-    FIELDS = ['application_id', 'request', 'ip_address', 'created_at']
+    FIELDS = ['_id', 'application_id', 'request', 'ip_address', 'created_at']
 
 
 class UserSerializer(BaseSerializer):
-    FIELDS = ['id', 'username', 'password', 'created_at']
+    FIELDS = ['_id', 'username', 'password', 'created_at']

@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: logger-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /users
+        backend:
+          serviceName: sinatra
+          servicePort: 5001
+      - path: /login
+        backend:
+          serviceName: sinatra
+          servicePort: 5001
+      - path: /check_login
+        backend:
+          serviceName: sinatra
+          servicePort: 5001
+      - path: /applications
+        backend:
+          serviceName: flask
+          servicePort: 5000
+      - path: /application/*
+        backend:
+          serviceName: flask
+          servicePort: 5000
+      - path: /logs
+        backend:
+          serviceName: flask
+          servicePort: 5000
+      - path: /logs/*
+        backend:
+          serviceName: flask
+          servicePort: 5000

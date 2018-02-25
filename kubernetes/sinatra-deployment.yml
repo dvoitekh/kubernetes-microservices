@@ -3,28 +3,28 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: flask
+    app: sinatra
     tier: frontend
-  name: flask-app
+  name: sinatra-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask
+      app: sinatra
       tier: frontend
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: flask
+        app: sinatra
         tier: frontend
     spec:
       containers:
-      - image: logger:latest
-        name: flask-app
+      - image: sinatra-auth:latest
+        name: sinatra-app
         imagePullPolicy: Never
         ports:
-        - containerPort: 5000
+        - containerPort: 5001
         resources: {}
 status: {}
