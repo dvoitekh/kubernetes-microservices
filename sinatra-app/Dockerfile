@@ -1,7 +1,8 @@
 FROM ruby:2.5.0
-ADD . /sinatra
-WORKDIR /sinatra
-COPY Gemfile /sinatra/
+RUN mkdir -p /app
+WORKDIR /app
+COPY Gemfile /app/
 RUN bundle install --quiet
-COPY . /sinatra
-CMD ["ruby", "run.rb"]
+COPY . /app
+EXPOSE 5001
+CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "5001"]

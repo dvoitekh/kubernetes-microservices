@@ -21,7 +21,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: sinatra-auth:latest
+      - image: sinatra-app:latest
         name: sinatra-app
         imagePullPolicy: Never
         ports:

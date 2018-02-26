@@ -3,36 +3,34 @@ kind: Ingress
 metadata:
   name: logger-ingress
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   rules:
   - http:
       paths:
       - path: /users
         backend:
-          serviceName: sinatra
+          serviceName: sinatra-app
           servicePort: 5001
       - path: /login
         backend:
-          serviceName: sinatra
+          serviceName: sinatra-app
           servicePort: 5001
       - path: /check_login
         backend:
-          serviceName: sinatra
+          serviceName: sinatra-app
           servicePort: 5001
       - path: /applications
         backend:
-          serviceName: flask
+          serviceName: flask-app
           servicePort: 5000
       - path: /application/*
         backend:
-          serviceName: flask
+          serviceName: flask-app
           servicePort: 5000
       - path: /logs
         backend:
-          serviceName: flask
-          servicePort: 5000
-      - path: /logs/*
-        backend:
-          serviceName: flask
+          serviceName: flask-app
           servicePort: 5000
